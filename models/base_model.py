@@ -1,16 +1,16 @@
 #!/usr/bin/python3
 from uuid import uuid4
 from datetime import datetime
-# import models
-import sys
+# from models import storage
+import models
 """representation of BaseModel"""
 
 
 class BaseModel():
     """Base Model Class"""
 
-    my_number = ""
-    name = ""
+    #my_number = ""
+    #name = ""
 
     def __init__(self, *args, **kwargs):
         """init BaseModel initializing
@@ -35,6 +35,7 @@ class BaseModel():
         """save function that update updated_at attrb
         """
         self.updated_at = datetime.now()
+        # storage.save()
         # models.storage.save()
 
 
