@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import uuid
 from datetime import datetime
+import models.__init__
 """representation of BaseModel"""
 
 
@@ -31,6 +32,7 @@ class BaseModel():
     def save(self):
         """save function that update updted_at attrb
         """
+        models.__init__.storage.save()
         self.updted_at = datetime.now()
 
     def to_dict(self):
