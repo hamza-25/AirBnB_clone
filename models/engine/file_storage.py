@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 import json
 import os
-class fileStorage:
+from models.base_model import BaseModel
+
+class FileStorage:
     __file_path = "c:/Users/hamza/Desktop/airbnb/models/engine/file.json"
     __objects = {}
 
@@ -14,11 +16,10 @@ class fileStorage:
 
     def new(self, obj):
         class_name = obj.__class__.__name__ + "." + str(obj.id)
-        self.__objects[class_name] = obj.__dict__
+        self.__objects[class_name] = obj
 
     def reload(self):
         if os.path.exists(self.__file_path) and os.path.isfile(self.__file_path):
             with open(self.__file_path, "r") as file:
                 self.__objects = json.load(file)
-                print(self.__objects)
-                print(type(self.__objects))
+
