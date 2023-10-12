@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import json
+from models.base_model import BaseModel
 import os
 
 class FileStorage:
@@ -10,24 +11,27 @@ class FileStorage:
         return FileStorage.__objects
 
     def new(self, obj):
-        class_name = obj.__class__.__name__ + "." + str(obj.id)
+        #class_name = obj.__class__.__name__ + "." + str(obj.id)
+        class_name = f"{obj.__class__.__name__}.{str(obj.id)}"
         FileStorage.__objects[class_name] = obj
-    
+
     def save(self):
         data = {}
-        for key, value in self.__objects.items():
+        for key, value  in self.__objects.items():
             data[key] = value.to_dict()
         with open(FileStorage.__file_path, "w") as file:
             json.dump(data, file)
     
     def reload(self):
-        #if os.path.exists(FileStorage.__file_path) and os.path.isfile(FileStorage.__file_path):
-            #with open(FileStorage.__file_path, "r") as file:
-                #FileStorage.__objects = json.load(file)
-        if os.path.isfile(FileStorage.__file_path):
-            try:
-                with open(FileStorage.__file_path, "r") as file:
-                    data = json.load(file)
-                    FileStorage.__objects = data
-            except (FileNotFoundError, json.JSONDecodeError) as e:
-                return
+        try:
+            with open(FileStorage.__file_path, "r") as file:
+                data = json.load(file)
+                for obj in data.values():
+                    class_name = obj["__class__"]
+                    del obj["__class__"]
+                    cls_obj = globals().get(class_name)
+                    if cls_obj:
+                        ob = cls_obj(**obj)
+                        self.new(ob)
+        except (FileNotFoundError, json.JSONDecodeError) as e:
+            return

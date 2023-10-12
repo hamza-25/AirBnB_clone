@@ -1,7 +1,7 @@
 #!/usr/bin/python3
+import models
 from uuid import uuid4
 from datetime import datetime
-from models import storage
 """representation of BaseModel"""
 
 
@@ -27,13 +27,13 @@ class BaseModel():
                     else:
                         self.__dict__[key] = value
         else:
-            storage.new(self)
+            models.storage.new(self)
 
     def save(self):
         """save function that update updated_at attrb
         """
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.save()
 
 
     def to_dict(self):
