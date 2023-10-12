@@ -1,16 +1,13 @@
 #!/usr/bin/python3
 from uuid import uuid4
 from datetime import datetime
-# import models
-import sys
+from models import storage
 """representation of BaseModel"""
 
 
 class BaseModel():
     """Base Model Class"""
 
-    my_number = ""
-    name = ""
 
     def __init__(self, *args, **kwargs):
         """init BaseModel initializing
@@ -29,13 +26,14 @@ class BaseModel():
                         self.__dict__[key] = datetime.strptime(value, dt_fmt)
                     else:
                         self.__dict__[key] = value
-            
+        else:
+            storage.new(self)
 
     def save(self):
         """save function that update updated_at attrb
         """
         self.updated_at = datetime.now()
-        # models.storage.save()
+        storage.save()
 
 
     def to_dict(self):
