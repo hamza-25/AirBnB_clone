@@ -65,6 +65,7 @@ class HBNBCommand(cmd.Cmd):
                             print(ob)
                 if not there_is_match:
                     print("** no instance found **")
+
     def do_destroy(self, args):
         """destroy method"""
         words = args.split()
@@ -115,6 +116,37 @@ class HBNBCommand(cmd.Cmd):
                         if cls_obj:
                             ob = cls_obj(**data[key])
                             print(ob)
+
+    def do_update(self, args):
+        words = args.split()
+        if not args:
+            print("** class name missing **")
+        elif  words[0] not in self.__class:
+            print("** class doesn't exist **")
+        elif len(words) == 1:
+            print("** instance id missing **")
+        elif len(words) == 2:
+            with open("file.json") as file:
+                data = json.load(file)
+                there_is_match = False
+                for key in data.keys():
+                    k_s = key.split('.')
+                    if words[0] == k_s[0] and words[1] == k_s[1]:
+                        there_is_match = True
+                        #class_name = data[key]["__class__"]
+                        #del data[key]["__class__"]
+                        #cls_obj = globals().get(class_name)
+                        #if cls_obj:
+                        #    ob = cls_obj(**data[key])
+                        #    print(ob)
+                if not there_is_match:
+                    print("** no instance found **")
+                else:
+                    print("** attribute name missing **")
+        elif len(words) == 3:
+            print("** value missing **")
+        elif len(words) >= 4:
+           pass 
 
 
 
