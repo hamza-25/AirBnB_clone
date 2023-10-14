@@ -23,9 +23,16 @@ class FileStorageTest(unittest.TestCase):
         # self.assertTrue(isinstance(obj1, FileStorage), "test_check_instance")
 
     def test_id_not_equal(self):
+        pass
         # obj1 = FileStorage()
         # obj2 = FileStorage()
         # self.assertIsNot(obj1.id, obj2.id, "must be not equal")
+
+    def test_FileStorage_instantiation_no_args(self):
+        self.assertEqual(type(FileStorage()), FileStorage)
+
+    def test_FileStorage_file_path_is_private_str(self):
+        self.assertEqual(str, type(FileStorage._FileStorage__file_path))
 
 
 if __name__ == "__main__":
