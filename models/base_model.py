@@ -1,15 +1,22 @@
 #!/usr/bin/python3
+"""this module Define base_model"""
 import models
 from uuid import uuid4
 from datetime import datetime
-"""Define base_model"""
 
 
-class BaseModel():
+class BaseModel:
     """Representation BaseModel Class"""
 
     def __init__(self, *args, **kwargs):
         """init BaseModel initializing
+        Args:
+        id (str): assign with an uuid when an instance is created
+        created_at (datetime): the current datetime when an instance is created
+        updated_at (datetime): the current datetime when an instance is created
+                               it will be updated when an obj is changed
+        *args: (unused)
+        **kwargs (dict): key/pair value of the instance's attributes
         """
         self.id = str(uuid4())
         self.created_at = datetime.now()
@@ -36,7 +43,7 @@ class BaseModel():
         """get dict of attrb object
 
         Returns:
-            return a dict
+            returns a dictionary containing all keys/values
         """
         objt_dict = self.__dict__.copy()
         objt_dict["__class__"] = self.__class__.__name__
