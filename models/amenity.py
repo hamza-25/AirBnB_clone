@@ -2,7 +2,10 @@
 """Defines the Amenity class."""
 from models.base_model import BaseModel
 
+
 class Amenity(BaseModel):
-    """Amenity Class"""
+    """Amenity Class
+        Attributes:
+            name (str): can be empty
+    """
     name = ""
-    

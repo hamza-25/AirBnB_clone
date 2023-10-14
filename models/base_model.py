@@ -2,12 +2,11 @@
 import models
 from uuid import uuid4
 from datetime import datetime
-"""representation of BaseModel"""
+"""Define base_model"""
 
 
 class BaseModel():
-    """Base Model Class"""
-
+    """Representation BaseModel Class"""
 
     def __init__(self, *args, **kwargs):
         """init BaseModel initializing
@@ -15,7 +14,7 @@ class BaseModel():
         self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
-        
+
         if kwargs:
             for key, value in kwargs.items():
                 if key != "__class__":
@@ -35,7 +34,6 @@ class BaseModel():
         self.updated_at = datetime.now()
         models.storage.save()
 
-
     def to_dict(self):
         """get dict of attrb object
 
@@ -54,4 +52,4 @@ class BaseModel():
         Returns:
             string contain info about object
         """
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
