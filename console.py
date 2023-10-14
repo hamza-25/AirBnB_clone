@@ -103,20 +103,20 @@ class HBNBCommand(cmd.Cmd):
         elif len(words) == 1:
             print("** instance id missing **")
         elif len(words) == 2:
-            # with open("file.json") as file:
-            # data = json.load(file)
-            data = storage.all()
-            there_is_match = False
-            for key in data.keys():
-                k_s = key.split('.')
-                if words[0] == k_s[0] and words[1] == k_s[1]:
-                    del data[key]
-                    # with open("file.json", "w") as file:
-                    # json.dump(data, file)
-                    storage.save()
-                    return
-            if not there_is_match:
-                print("** no instance found **")
+            with open("file.json") as file:
+                data = json.load(file)
+            # data = storage.all()
+                there_is_match = False
+                for key in data.keys():
+                    k_s = key.split('.')
+                    if words[0] == k_s[0] and words[1] == k_s[1]:
+                        del data[key]
+                        with open("file.json", "w") as file:
+                            json.dump(data, file)
+                        # storage.save()
+                        return
+                if not there_is_match:
+                    print("** no instance found **")
 
     def do_all(self, args):
         """List all objects currently stored in 'file.json'.
