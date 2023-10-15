@@ -26,6 +26,18 @@ class HBNBCommand(cmd.Cmd):
             ]
     prompt = "(hbnb) "
 
+    def default(self, args):
+        """default method
+        """
+        class_name = ["all()"]
+        str_split = args.split('.')
+        if len(str_split) == 2:
+            if str_split[0] in self.__class and str_split[1] in class_name:
+                expr = "self.do_{}".format(str_split[1][:-2]) 
+                eval(expr)("BaseModel")
+        else:
+            print("***Unknown syntax: {}".format(arg))
+
     def emptyline(self):
         """Do nothing upon receiving an empty line."""
         pass
