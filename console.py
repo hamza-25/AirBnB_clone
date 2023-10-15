@@ -34,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
         if len(str_split) == 2:
             if str_split[0] in self.__class and str_split[1] in class_name:
                 expr = "self.do_{}".format(str_split[1][:-2]) 
-                eval(expr)("BaseModel")
+                eval(expr)(str_split[0])
         else:
             print("***Unknown syntax: {}".format(arg))
 
