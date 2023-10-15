@@ -54,7 +54,11 @@ class HBNBCommand(cmd.Cmd):
                 method_param = str_split[1].split('(')
                 id_att_value = method_param[1].split(',')
                 uid, att, value = id_att_value
-                uid, att, value = uid[1:-1], att[2:-1], value[2:-2]
+                uid, att = uid[1:-1], att[2:-1]
+                if '"' in value:
+                    value = value[2:-2]
+                else:
+                    value = value[1:-1]
                 objects = storage.all()
                 key_format = "{}.{}".format(str_split[0], uid)
                 if key_format in objects:
