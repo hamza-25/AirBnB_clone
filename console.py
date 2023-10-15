@@ -56,15 +56,24 @@ class HBNBCommand(cmd.Cmd):
                 uid, att, value = id_att_value
                 uid, att = uid[1:-1], att[2:-1]
                 if '"' in value:
-                    value = int(value[2:-2])
+                    value = value[2:-2]
                 else:
-                    value = int(value[1:-1])
+                    value = value[1:-1]
                 objects = storage.all()
                 key_format = "{}.{}".format(str_split[0], uid)
                 if key_format in objects:
                     expr = "self.do_{}".format(method_param[0])
                     param = "{} {} {} {}".format(str_split[0], uid, att, value)
                     eval(expr)(param)
+            elif '{' in str_split[1]:
+                print(str_split[0])
+                print(str_split[1])
+                method_param = str_split[1].split('(')
+                uid_dict = method_param[1].split(',', 1)
+                print(uid_dict[0].strip('"'))
+                string = uid_dict[1].replace("\"", "'")
+                string = string[1:-1]
+                print(string)
         else:
             print("***Unknown syntax: {}".format(arg))
 
