@@ -65,8 +65,6 @@ class HBNBCommand(cmd.Cmd):
                     expr = "self.do_{}".format(method_param[0])
                     param = "{} {} {} {}".format(str_split[0], uid, att, value)
                     eval(expr)(param)
-                else:
-                    print("** no instance found **")
         else:
             print("***Unknown syntax: {}".format(arg))
 
