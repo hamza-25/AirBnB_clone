@@ -29,12 +29,27 @@ class HBNBCommand(cmd.Cmd):
     def default(self, args):
         """default method
         """
-        class_name = ["all()", "count()"]
+        class_name = ["all()", "count()", "show()", "destroy()"]
         str_split = args.split('.')
         if len(str_split) == 2:
             if str_split[0] in self.__class and str_split[1] in class_name:
                 expr = "self.do_{}".format(str_split[1][:-2])
                 eval(expr)(str_split[0])
+            elif '"' in str_split[1]:
+                object_name, method_and_args = str_split
+                method_and_args = method_and_args.strip('()')
+                method, arguments = method_and_args.split('(')
+                arguments = arguments.rstrip(')')
+                if (object_name in self.__class
+                        and "{}()".format(method) in class_name):
+                    objects = storage.all()
+                    key_format = "{}.{}".format(object_name, arguments[1:-1])
+                    if key_format in objects:
+                        expr = "self.do_{}".format(method)
+                        param = "{} {}".format(object_name, arguments[1:-1])
+                        eval(expr)(param)
+                    else:
+                        print("** no instance found **")
         else:
             print("***Unknown syntax: {}".format(arg))
 
