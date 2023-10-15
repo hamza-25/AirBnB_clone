@@ -27,7 +27,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     def default(self, args):
-        """default method
+        """default method that execute if none of the method in the input
         """
         class_name = ["all()", "count()", "show()", "destroy()"]
         str_split = args.split('.')
@@ -56,20 +56,27 @@ class HBNBCommand(cmd.Cmd):
                 uid, att, value = id_att_value
                 uid, att = uid[1:-1], att[2:-1]
                 if '"' in value:
-                    value = value[2:-2]
+                    value = int(value[2:-2])
                 else:
-                    value = value[1:-1]
+                    value = int(value[1:-1])
                 objects = storage.all()
                 key_format = "{}.{}".format(str_split[0], uid)
                 if key_format in objects:
                     expr = "self.do_{}".format(method_param[0])
                     param = "{} {} {} {}".format(str_split[0], uid, att, value)
                     eval(expr)(param)
+                else:
+                    print("** no instance found **")
         else:
             print("***Unknown syntax: {}".format(arg))
 
     def do_count(self, args):
-        """count methods"""
+        """count methods
+            attr:
+                count: that count the number of obj
+            Return:
+                print count
+        """
         count = 0
         str_split = args.split()
         if args:
