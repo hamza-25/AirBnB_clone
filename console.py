@@ -35,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
             if str_split[0] in self.__class and str_split[1] in class_name:
                 expr = "self.do_{}".format(str_split[1][:-2])
                 eval(expr)(str_split[0])
-            elif '"' in str_split[1]:
+            elif '"' in str_split[1] and ',' not in str_split[1]:
                 object_name, method_and_args = str_split
                 method_and_args = method_and_args.strip('()')
                 method, arguments = method_and_args.split('(')
@@ -50,6 +50,17 @@ class HBNBCommand(cmd.Cmd):
                         eval(expr)(param)
                     else:
                         print("** no instance found **")
+            elif ',' in str_split[1] and '{' not in str_split[1]:
+                method_param = str_split[1].split('(')
+                id_att_value = method_param[1].split(',')
+                uid, att, value = id_att_value
+                uid, att, value = uid[1:-1], att[2:-1], value[2:-2]
+                objects = storage.all()
+                key_format = "{}.{}".format(str_split[0], uid)
+                if key_format in objects:
+                    expr = "self.do_{}".format(method_param[0])
+                    param = "{} {} {} {}".format(str_split[0], uid, att, value)
+                    eval(expr)(param)
         else:
             print("***Unknown syntax: {}".format(arg))
 
