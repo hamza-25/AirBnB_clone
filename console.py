@@ -29,14 +29,26 @@ class HBNBCommand(cmd.Cmd):
     def default(self, args):
         """default method
         """
-        class_name = ["all()"]
+        class_name = ["all()", "count()"]
         str_split = args.split('.')
         if len(str_split) == 2:
             if str_split[0] in self.__class and str_split[1] in class_name:
-                expr = "self.do_{}".format(str_split[1][:-2]) 
+                expr = "self.do_{}".format(str_split[1][:-2])
                 eval(expr)(str_split[0])
         else:
             print("***Unknown syntax: {}".format(arg))
+
+    def do_count(self, args):
+        """count methods"""
+        count = 0
+        str_split = args.split()
+        if args:
+            class_name = str_split[0]
+            objects = storage.all()
+            for obj in objects.values():
+                if class_name == obj.__class__.__name__:
+                    count += 1
+        print(count)
 
     def emptyline(self):
         """Do nothing upon receiving an empty line."""
