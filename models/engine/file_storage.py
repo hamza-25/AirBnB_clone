@@ -55,15 +55,16 @@ class FileStorage:
     def reload(self):
         """Deserialize and load objects from the file.
         """
-        try:
-            with open(self.__file_path, "r") as file:
-                data = json.load(file)
-                for obj in data.values():
-                    class_name = obj["__class__"]
-                    del obj["__class__"]
-                    cls_obj = globals().get(class_name)
-                    if cls_obj:
-                        ob = cls_obj(**obj)
-                        self.new(ob)
-        except FileNotFoundError:
-            return
+        if os.path.exists(self.__file_path):
+            try:
+                with open(self.__file_path, "r") as file:
+                    data = json.load(file)
+                    for obj in data.values():
+                        class_name = obj["__class__"]
+                        del obj["__class__"]
+                        cls_obj = globals().get(class_name)
+                        if cls_obj:
+                            ob = cls_obj(**obj)
+                            self.new(ob)
+            except FileNotFoundError:
+                return
