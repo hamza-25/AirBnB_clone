@@ -66,14 +66,14 @@ class HBNBCommand(cmd.Cmd):
                     param = "{} {} {} {}".format(str_split[0], uid, att, value)
                     eval(expr)(param)
             elif '{' in str_split[1]:
-                print(str_split[0])
-                print(str_split[1])
+                # print(str_split[0])
+                # print(str_split[1])
                 method_param = str_split[1].split('(')
                 uid_dict = method_param[1].split(',', 1)
-                print(uid_dict[0].strip('"'))
+                # print(uid_dict[0].strip('"'))
                 string = uid_dict[1].replace("\"", "'")
                 string = string[1:-1]
-                print(string)
+                # print(string)
         else:
             print("***Unknown syntax: {}".format(arg))
 
