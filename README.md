@@ -97,7 +97,7 @@ $
 
 All the test are defined in the `tests` folder.
 
-### Documentationnnnnnnnnnn
+### Documentationnnnnnnnnn
 
 * Modules:
 
