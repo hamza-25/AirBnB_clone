@@ -14,6 +14,8 @@
   border: 1px solid #ff5a5f;
   border-radius: 4px;
   display: inline-block;
+  height: 400px;
+  overflow: hidden;
 }
 
 .places h2 {
@@ -23,14 +25,18 @@
 }
 
 .price_by_night {
+  align-items: center;
+  justify-content: center;
+  display: flex;
   float: right;
   color: #ff5a5f;
   border: 4px solid #ff5a5f;
   border-radius: 50%;
-  min-width: 60px;
   height: 60px;
   width: 60px;
   font-size: 30px;
+  min-width: 60px;
+  padding: 5px;
 }
 
 article .information {
