@@ -1,0 +1,119 @@
+.places {
+  text-align: center;
+}
+
+.places h1 {
+  font-size: 30px;
+  text-align: left;
+}
+
+.places article {
+  width: 390px;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ff5a5f;
+  border-radius: 4px;
+  display: inline-block;
+  /* height: 800px; */
+  /* overflow: hidden; */
+}
+
+.places h2 {
+  font-size: 30px;
+  text-align: end;
+  display: inline-block;
+}
+
+.price_by_night {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  float: right;
+  color: #ff5a5f;
+  border: 4px solid #ff5a5f;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  font-size: 30px;
+  min-width: 60px;
+  padding: 5px;
+}
+
+article .information {
+  height: 80px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+}
+
+div.max_guest {
+  width: 100px;
+  background: #fff url(../images/icon_group.png) no-repeat top;
+}
+
+div.number_rooms {
+  width: 100px;
+  background: url(../images/icon_bed.png) no-repeat top;
+}
+
+div.number_bathrooms {
+  width: 100px;
+  background: url(../images/icon_bath.png) no-repeat top;
+}
+
+div.user,
+div.description {
+  text-align: left;
+  margin: 15px 15px 15px 0px;
+}
+
+article div.amenities {
+    margin-top: 40px;
+    display: block;
+    width: 100%;
+}
+
+article div.amenities h2 {
+    font-size: 16px;
+    border-bottom: 1px solid #DDD;
+    width: 100%;
+    text-align: start;
+}
+
+article div.amenities li {
+    list-style: none;
+    margin: 5px;
+    font-weight: 100;
+    /* background: url(../images/icon_tv.png); */
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
+}
+
+article div.reviews h2 {
+  font-size: 16px;
+  border-bottom: 1px solid #DDD;
+  width: 100%;
+  text-align: start;
+}
+
+article div.reviews li {
+  list-style: none;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: start;
+}
+
+article div.reviews li  h3{
+  font-size: 14px;
+  padding: 0px 0px 0px 0px;
+  margin: 0px;
+}
+
+article div.reviews li p {
+ font-size: 16px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 15px 0px;
+ text-align: left;
+}
+
